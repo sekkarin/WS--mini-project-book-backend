@@ -80,5 +80,7 @@ Docker Compose installed on your system.
 
   1. Open a web browser and go to http://localhost:8081/.
   You will be able to log in to MongoDB Express and manage your MongoDB databases through the web interface.
-  
-  ![Alt Text](image\mongoExpress.png)
+
+  ![Alt Text](image/mongoExpress.png)
+
+  ![Book Cover](image/mongoExpress.png)
