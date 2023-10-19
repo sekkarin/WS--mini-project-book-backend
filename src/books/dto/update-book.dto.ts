@@ -5,15 +5,6 @@ export class UpdateBookDto {
   @IsOptional()
   @IsString()
   @ApiProperty({
-    description: 'The name of the book',
-    example: 'Updated Book Name',
-    required: false,
-  })
-  readonly name?: string;
-
-  @IsOptional()
-  @IsString()
-  @ApiProperty({
     description: 'The author of the book',
     example: 'Updated Author Name',
     required: false,

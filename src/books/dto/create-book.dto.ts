@@ -4,13 +4,6 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateBookDto {
   @IsString()
   @ApiProperty({
-    description: 'The name of the book',
-    example: 'Example Book Name',
-  })
-  readonly name: string;
-
-  @IsString()
-  @ApiProperty({
     description: 'The author of the book',
     example: 'Example Author Name',
   })
