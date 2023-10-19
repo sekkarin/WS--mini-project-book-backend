@@ -18,13 +18,14 @@ async function bootstrap() {
   app.enableCors({ ...corsOptions });
   const config = new DocumentBuilder()
     .setTitle('Books api')
-    .setDescription('The cats API description')
+    .setDescription('The Book API')
     .setVersion('1.0')
+    .setExternalDoc('Nestjs', 'https://docs.nestjs.com/')
+    
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   await app.listen(configService.get<number>('PORT') || 3000);
-        
 }
 bootstrap();

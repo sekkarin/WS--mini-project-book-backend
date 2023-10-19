@@ -1,6 +1,4 @@
-// "email": "ella@prisma.io",
-//   "name": "Ella",
-//   "role": "ADMIN"
+
 import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema(

@@ -54,6 +54,7 @@ export class UsersController {
   })
   @ApiResponse({ status: 404, description: 'Not Found - user not found' })
   @ApiBearerAuth() // Specify Bearer token authentication
+  @ApiTags("UserRoles")
   update(@Body() createCatDto: CreateUser, @Req() req: Request) {
     try {
       const id = req['user'].sub;
@@ -70,6 +71,7 @@ export class UsersController {
       throw new NotFoundException('User not found.');
     }
   }
+
   @ApiOperation({ summary: 'Update a user by ID' }) // Operation summary
   @ApiResponse({ status: 200, description: 'User updated successfully' })
   @ApiResponse({
@@ -86,6 +88,7 @@ export class UsersController {
   @Roles(Role.Admin, Role.User)
   @UseGuards(AuthGuard, RolesGuard)
   @HttpCode(HttpStatus.OK)
+  @ApiTags("AdminRoles")
   @Patch(':id')
   async updateById(
     @Body() createCatDto: CreateUser,
@@ -119,9 +122,10 @@ export class UsersController {
     type: [GetUserAllDto],
   }) // Response description
   @ApiBearerAuth()
-  @Roles(Role.Admin, Role.User)
+  @Roles(Role.Admin)
   @UseGuards(AuthGuard, RolesGuard)
   @HttpCode(HttpStatus.OK)
+  @ApiTags("AdminRoles")
   async getUsers() {
     return await this.usersService.getAll();
   }
@@ -139,6 +143,7 @@ export class UsersController {
   })
   @ApiResponse({ status: 404, description: 'Not Found - user not found' })
   @ApiBearerAuth()
+  @ApiTags("AdminRoles")
   async deleteUser(@Param() params: { id: string }) {
     console.log(params.id);
 
@@ -178,6 +183,7 @@ export class UsersController {
   })
   @ApiResponse({ status: 404, description: 'Not Found - user not found' })
   @ApiBearerAuth()
+  @ApiTags("UserRoles","AdminRoles")
   async getUser(@Param() params: { username: string }) {
     if (!params.username) {
       throw new BadRequestException('Some required data is missing.');

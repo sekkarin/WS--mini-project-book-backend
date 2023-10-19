@@ -112,6 +112,7 @@ export class AuthController {
   @UseGuards(AuthGuard, RolesGuard)
   @ApiOperation({ summary: 'User logout' }) // Operation summary
   @ApiResponse({ status: 200, description: 'User successfully logged out' })
+  @ApiTags("UserRoles","AdminRoles")
   async logOut(@Req() req: Request, @Res() res: Response) {
     res.status(200).json({ message: "logout's" });
   }
