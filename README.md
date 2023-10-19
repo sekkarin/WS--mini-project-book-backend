@@ -83,4 +83,13 @@ Docker Compose installed on your system.
 
   ![Alt Text](image/mongoExpress.png)
 
-  ![Book Cover](image/mongoExpress.png)
+### Swagger Documentation
+  You can access Swagger documentation to explore and test the API endpoints:
+  Open a web browser.
+
+  1. Go to http://localhost:3000/api.
+
+  2. This will open the Swagger documentation, where you can view and interact with your API endpoints.
+
+  ![Ale Text](image/swaggerAPI.png)
+
