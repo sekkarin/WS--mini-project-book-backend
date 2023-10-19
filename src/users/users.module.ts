@@ -9,9 +9,8 @@ import { DatabaseModule } from 'src/database/database.module';
   providers: [
     UsersService,
     ...userProviders,
-
   ],
-  exports: [UsersService],
+  exports: [UsersService,...userProviders],
   imports: [DatabaseModule],
   controllers: [UsersController],
 })
