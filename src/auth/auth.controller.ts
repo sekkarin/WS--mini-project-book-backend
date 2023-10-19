@@ -107,6 +107,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @ApiBearerAuth()
   @Roles(Role.Admin, Role.User)
   @UseGuards(AuthGuard, RolesGuard)
   @ApiOperation({ summary: 'User logout' }) // Operation summary

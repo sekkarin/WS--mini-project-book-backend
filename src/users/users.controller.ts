@@ -70,6 +70,46 @@ export class UsersController {
       throw new NotFoundException('User not found.');
     }
   }
+  @ApiOperation({ summary: 'Update a user by ID' }) // Operation summary
+  @ApiResponse({ status: 200, description: 'User updated successfully' })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request - some required data is missing',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - not authorized to perform this action',
+  })
+  @ApiResponse({ status: 404, description: 'Not Found - user not found' })
+  @ApiParam({ name: 'id', description: 'User ID' }) // Parameter description
+  @ApiBearerAuth() // Specify Bearer token authentication
+  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard, RolesGuard)
+  @HttpCode(HttpStatus.OK)
+  @Patch(':id')
+  async updateById(
+    @Body() createCatDto: CreateUser,
+    @Param() params: { id: string },
+    
+  ) {
+    try {
+      if (!createCatDto || Object.keys(createCatDto).length === 0) {
+        throw new BadRequestException(
+          'Invalid request - createCatDto is empty or null.',
+        );
+      }
+      const updatedUser = await this.usersService.update(
+        createCatDto,
+        params.id,
+      );
+      return {
+        message: 'Update user success',
+        updatedUser,
+      };
+    } catch (error) {
+      throw new NotFoundException('User not found.');
+    }
+  }
 
   @Get()
   @ApiOperation({ summary: 'Get all users' }) // Operation summary

@@ -48,7 +48,7 @@ export class UsersService {
   async update(userUpdate: CreateUser, id: string) {
     try {
       const hashPassword = await bcrypt.hash(userUpdate.password, 10);
-      return this.userModel.updateOne(
+      return await this.userModel.updateOne(
         { _id: id },
         { hashPassword, ...userUpdate },
       ).exec()
