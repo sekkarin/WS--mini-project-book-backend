@@ -142,10 +142,10 @@ export class AuthController {
   @ApiBearerAuth()
   async refresh(@Req() request: Request, @Res() res: Response) {
     const cookies = request.cookies;
-    if (!cookies.refreshToken) {
+    if (!cookies.refresh_token) {
       throw new UnauthorizedException();
     }
-    const access_token = await this.authService.refresh(cookies.refreshToken);
+    const access_token = await this.authService.refresh(cookies.refresh_token);
     res.status(200).json({ access_token });
   }
 }
