@@ -53,7 +53,7 @@ export class AuthService {
 
       return {
         access_token: access_token,
-        refresh_token:refresh_token
+        refresh_token: refresh_token,
       };
     } catch (error) {
       throw new HttpException(
@@ -112,7 +112,11 @@ export class AuthService {
           username: foundUser.username,
           roles: roles,
         };
-        return await this.jwtService.signAsync(payload, { expiresIn: '20s' });
+        const access_token = await this.jwtService.signAsync(payload, {
+          expiresIn: this.configService.get<string>('EXPIRES_IN_ACCESS_TOKEN'),
+          secret: this.configService.get<string>('SECRET_TOKEN'),
+        });
+        return access_token;
       } catch (error) {
         throw new ForbiddenException();
       }
