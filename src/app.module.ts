@@ -7,7 +7,7 @@ import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './utils/logger.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { BooksModule } from './books/books.module';
-
+import { PrometheusModule } from "@willsoto/nestjs-prometheus";
 @Module({
   imports: [
     DatabaseModule,
@@ -17,6 +17,7 @@ import { BooksModule } from './books/books.module';
       isGlobal: true,
     }),
     BooksModule,
+    PrometheusModule.register({})
   ],
   controllers: [AppController],
   providers: [AppService],
