@@ -5,36 +5,67 @@ export class CreateUser {
     description: 'Email of the user',
     example: 'user@example.com',
   })
-  readonly email: string;
+  readonly email?: string;
 
   @ApiProperty({
     description: 'Password of the user',
     example: 'password123',
   })
-  readonly password: string;
+  readonly password?: string;
 
   @ApiProperty({
     description: 'Name of the user',
     example: 'John Doe',
   })
-  readonly name: string;
+  readonly name?: string;
 
   @ApiProperty({
     description: 'Username of the user',
     example: 'john_doe',
   })
-  readonly username: string;
+  readonly username?: string;
 
   @ApiProperty({
     description: 'Flag indicating whether the user is alive or not',
     example: 'true',
   })
-  readonly isAlive: boolean;
+  readonly isAlive?: boolean;
   @ApiProperty({
     description: "URL for the user's profile picture",
     example: 'https://example.com/profile.jpg',
   })
-  readonly profileUrl: string;
+  readonly profileUrl?: string;
+}
+export class UpdateUser {
+  @ApiProperty({
+    description: 'Email of the user',
+    example: 'user@example.com',
+    required:false
+  })
+  readonly email?: string;
+
+  @ApiProperty({
+    description: 'Password of the user',
+    example: 'password123',
+    required:false
+  })
+  readonly password?: string;
+
+  @ApiProperty({
+    description: 'Name of the user',
+    example: 'John Doe',
+    required:false
+  })
+  readonly name?: string;
+
+
+
+  @ApiProperty({
+    description: "URL for the user's profile picture",
+    example: 'https://example.com/profile.jpg',
+    required:false
+  })
+  readonly profileUrl?: string;
 }
 export class User {
   @ApiProperty({

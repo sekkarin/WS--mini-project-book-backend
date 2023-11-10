@@ -25,7 +25,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/auth/enums/role.enum';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { CreateUser, GetUserAllDto } from './user.dto';
+import { CreateUser, GetUserAllDto, UpdateUser } from './user.dto';
 import { Request } from 'express';
 
 @ApiTags('User')
@@ -55,7 +55,7 @@ export class UsersController {
   @ApiResponse({ status: 404, description: 'Not Found - user not found' })
   @ApiBearerAuth() // Specify Bearer token authentication
   @ApiTags("UserRoles")
-  update(@Body() createCatDto: CreateUser, @Req() req: Request) {
+  update(@Body() createCatDto: UpdateUser, @Req() req: Request) {
     try {
       const id = req['user'].sub;
       if (!createCatDto || Object.keys(createCatDto).length === 0) {
@@ -63,6 +63,7 @@ export class UsersController {
           'Invalid request - createCatDto is empty or null.',
         );
       }
+      
       this.usersService.update(createCatDto, id);
       return {
         message: 'Update user success',
@@ -91,7 +92,7 @@ export class UsersController {
   @ApiTags("AdminRoles")
   @Patch(':id')
   async updateById(
-    @Body() createCatDto: CreateUser,
+    @Body() createCatDto: UpdateUser,
     @Param() params: { id: string },
     
   ) {

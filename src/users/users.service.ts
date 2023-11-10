@@ -23,7 +23,7 @@ export class UsersService {
     return this.userModel.findOne({ refreshToken: token });
   }
   async getUserByUserName(username: string) {
-    console.log(username);
+    // console.log(username);
 
     return await this.userModel
       .findOne({
@@ -47,11 +47,16 @@ export class UsersService {
   }
   async update(userUpdate: CreateUser, id: string) {
     try {
-      const hashPassword = await bcrypt.hash(userUpdate.password, 10);
-      return await this.userModel.updateOne(
-        { _id: id },
-        { hashPassword, ...userUpdate },
-      ).exec()
+      let hashPassword: undefined | string = undefined;
+    
+      if (userUpdate.password) {
+        hashPassword = await bcrypt.hash(userUpdate.password, 10);
+      }
+    
+
+      return await this.userModel
+        .updateOne({ _id: id }, { ...userUpdate, password: hashPassword })
+        .exec();
     } catch (error) {
       throw new UnauthorizedException();
     }
