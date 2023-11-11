@@ -64,10 +64,8 @@ export class UsersController {
         );
       }
       
-      this.usersService.update(createCatDto, id);
-      return {
-        message: 'Update user success',
-      };
+      const updatedUser =  this.usersService.update(createCatDto, id);
+      return updatedUser;
     } catch (error) {
       throw new NotFoundException('User not found.');
     }
@@ -106,10 +104,9 @@ export class UsersController {
         createCatDto,
         params.id,
       );
-      return {
-        message: 'Update user success',
-        updatedUser,
-      };
+      
+      
+      return updatedUser;
     } catch (error) {
       throw new NotFoundException('User not found.');
     }

@@ -7,7 +7,7 @@ import {
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { User } from './interfaces/user.interface';
-import { CreateUser } from './user.dto';
+import { CreateUser, UpdateUser } from './user.dto';
 
 @Injectable()
 export class UsersService {
@@ -53,13 +53,16 @@ export class UsersService {
         hashPassword = await bcrypt.hash(userUpdate.password, 10);
       }
 
-      return await this.userModel
-        .updateOne(
+      const updateUser = await this.userModel
+        .findOneAndUpdate<UpdateUser>(
           { _id: id },
           { ...userUpdate, password: hashPassword },
           { new: true },
         )
+        .select("-password -refreshToken")
         .exec();
+        
+        return updateUser;
     } catch (error) {
       throw new UnauthorizedException();
     }
