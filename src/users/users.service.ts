@@ -48,14 +48,17 @@ export class UsersService {
   async update(userUpdate: CreateUser, id: string) {
     try {
       let hashPassword: undefined | string = undefined;
-    
+
       if (userUpdate.password) {
         hashPassword = await bcrypt.hash(userUpdate.password, 10);
       }
-    
 
       return await this.userModel
-        .updateOne({ _id: id }, { ...userUpdate, password: hashPassword })
+        .updateOne(
+          { _id: id },
+          { ...userUpdate, password: hashPassword },
+          { new: true },
+        )
         .exec();
     } catch (error) {
       throw new UnauthorizedException();

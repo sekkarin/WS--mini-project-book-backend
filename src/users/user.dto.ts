@@ -58,7 +58,12 @@ export class UpdateUser {
   })
   readonly name?: string;
 
-
+  @ApiProperty({
+    description: 'Username of the user',
+    example: 'john_doe',
+    required:false
+  })
+  readonly username?: string;
 
   @ApiProperty({
     description: "URL for the user's profile picture",
