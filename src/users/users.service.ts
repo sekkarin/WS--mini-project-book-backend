@@ -36,11 +36,11 @@ export class UsersService {
   async getUserById(username: string): Promise<User | undefined> {
     return await this.userModel
       .findOne({ username: username })
-      .select('-password -refreshToken -isAlive')
+      .select('-password -refreshToken -isAlive -role')
       .exec();
   }
   async getAll(): Promise<User[] | undefined> {
-    return this.userModel.find().select('-password -refreshToken -isAlive').exec();
+    return this.userModel.find().select('-password -refreshToken -isAlive -role').exec();
   }
   async findOneById(id: string): Promise<User | undefined> {
     return this.userModel.findById(id).exec();
@@ -55,7 +55,7 @@ export class UsersService {
           { ...userUpdate },
           { new: true },
         )
-        .select("-password -refreshToken")
+        .select("-password -refreshToken -role")
         .exec();
         
         return updateUser;
