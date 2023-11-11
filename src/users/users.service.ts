@@ -47,16 +47,12 @@ export class UsersService {
   }
   async update(userUpdate: CreateUser, id: string) {
     try {
-      let hashPassword: undefined | string = undefined;
-
-      if (userUpdate.password) {
-        hashPassword = await bcrypt.hash(userUpdate.password, 10);
-      }
+    
 
       const updateUser = await this.userModel
         .findOneAndUpdate<UpdateUser>(
           { _id: id },
-          { ...userUpdate, password: hashPassword },
+          { ...userUpdate },
           { new: true },
         )
         .select("-password -refreshToken")

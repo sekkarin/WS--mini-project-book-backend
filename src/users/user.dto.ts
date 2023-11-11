@@ -44,12 +44,7 @@ export class UpdateUser {
   })
   readonly email?: string;
 
-  @ApiProperty({
-    description: 'Password of the user',
-    example: 'password123',
-    required:false
-  })
-  readonly password?: string;
+
 
   @ApiProperty({
     description: 'Name of the user',
@@ -58,12 +53,6 @@ export class UpdateUser {
   })
   readonly name?: string;
 
-  @ApiProperty({
-    description: 'Username of the user',
-    example: 'john_doe',
-    required:false
-  })
-  readonly username?: string;
 
   @ApiProperty({
     description: "URL for the user's profile picture",
