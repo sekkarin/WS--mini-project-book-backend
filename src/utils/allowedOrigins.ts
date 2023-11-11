@@ -4,4 +4,5 @@ export const allowedOrigins = [
   'http://localhost:3000',
   'https://slate-gray-chiton-slip.cyclic.app',
   'https://frontend-books-2gosgzrm3-aumnatthacha.vercel.app',
+  'https://frontend-books-eight.vercel.app'
 ];
