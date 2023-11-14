@@ -129,7 +129,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @Roles(Role.Admin)
+  @Roles(Role.User)
   @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard, RolesGuard)
   @ApiOperation({ summary: 'Delete a user by ID', description: 'Roles Admin' }) // Operation summary
@@ -143,7 +143,7 @@ export class UsersController {
   @ApiBearerAuth()
   @ApiTags("AdminRoles")
   async deleteUser(@Param() params: { id: string }) {
-    console.log(params.id);
+    // console.log(params.id);
 
     if (!params.id) {
       throw new BadRequestException('Some required data is missing.');

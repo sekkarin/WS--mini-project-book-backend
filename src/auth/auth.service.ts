@@ -76,6 +76,7 @@ export class AuthService {
       if (!fondUser) {
         throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
       }
+      fondUser.refreshToken = '';
       return await fondUser.save();
     } catch (error) {
       console.log(error);
